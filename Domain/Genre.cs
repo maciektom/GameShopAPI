@@ -1,6 +1,4 @@
-﻿using System.Xml.Linq;
-
-namespace InternetGameShopAPI.Domain
+﻿namespace InternetGameShopAPI.Domain
 {
 
     public class Genre
@@ -9,6 +7,7 @@ namespace InternetGameShopAPI.Domain
 
         public Guid GenreID { get; set; }
         public string Name { get; set; }
+
         public Genre(Guid genreID, string name)
         {
             GenreID = genreID;
