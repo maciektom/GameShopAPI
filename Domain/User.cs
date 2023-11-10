@@ -8,7 +8,7 @@
         public string Email { get; set; } = string.Empty;
         public string Role { get; set; } = string.Empty;
         public DateTime DateOfBirth { get; set; }
-        public List<string> GamesOwned { get; set; } = new List<string>(); 
+        public ICollection<UserGames> GamesOwned { get; set; } = new List<UserGames>(); 
     }
 }
 

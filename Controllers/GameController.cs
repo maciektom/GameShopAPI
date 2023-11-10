@@ -1,4 +1,5 @@
 ﻿using InternetGameShopAPI.Domain;
+using InternetGameShopAPI.Infrastructure;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualBasic;
@@ -20,19 +21,19 @@ namespace InternetGameShopAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult<List<User>> AddGame(GameViewModel gameviewmodel)
+        public ActionResult<List<User>> AddGame(GameViewModel gameViewModel)
         {
             var game = new Game
             {
                 GameId = Guid.NewGuid(),
-                Title = gameviewmodel.Title,
-                Description = gameviewmodel.Description,
-                Developer = gameviewmodel.Developer,
-                Publisher = gameviewmodel.Publisher,
-                Platform = gameviewmodel.Platform,
-                ReleaseDate = gameviewmodel.ReleaseDate,
-                Price = gameviewmodel.Price,
-                Genre = gameviewmodel.Genre,
+                Title = gameViewModel.Title,
+                Description = gameViewModel.Description,
+                Developer = gameViewModel.Developer,
+                Publisher = gameViewModel.Publisher,
+                Platform = gameViewModel.Platform,
+                ReleaseDate = gameViewModel.ReleaseDate,
+                Price = gameViewModel.Price,
+                Genre = gameViewModel.Genre,
             };
             games.Add(game);
             return Ok(games);

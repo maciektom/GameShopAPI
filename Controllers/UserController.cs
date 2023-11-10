@@ -1,6 +1,8 @@
 ﻿using InternetGameShopAPI.Domain;
 using InternetGameShopAPI.DTO;
+using InternetGameShopAPI.Services;
 using Microsoft.AspNetCore.Mvc;
+using static InternetGameShopAPI.Services.UserService;
 
 namespace InternetGameShopAPI.Controllers
 {
@@ -9,71 +11,59 @@ namespace InternetGameShopAPI.Controllers
     public class UserController : Controller
     {
 
-        private static List<User> users = new List<User>();
-
-        [HttpGet]
-        public async Task<ActionResult<List<User>>> Get()
-
+        private readonly IUserService _userService;
+        public UserController(IUserService userService)
         {
-            return Ok(users);
+            _userService = userService;
         }
+
+        //[HttpGet]
+        //public async Task<ActionResult<List<User>>> Get()
+
+        //{
+        //  //  return Ok(Users);
+        //}
 
         [HttpPost]
-        public async Task<ActionResult<List<User>>> AddUser([FromBody] UserViewModel userviewmodel)
+        public async Task<ActionResult<User>> AddUser([FromBody] UserViewModel userviewmodel)
         {
-           
-            var game = new Game();
-            var dto = new GameDTO()
+            try
             {
-                Title = new List<string> { game.Title } // Store game titles in a list
-            };
-            var user = new User
+                if (ModelState.IsValid)
+                {
+                    await _userService.AddUser(userviewmodel);
+                    return Ok(userviewmodel);
+                }
+                return BadRequest("Invalid input data. User not created.");
+            }
+            catch (Exception ex)
             {
-                UserId = Guid.NewGuid(),
-                Username = userviewmodel.Username,
-                Password = userviewmodel.Password,
-                Email = userviewmodel.Email,
-                Role = userviewmodel.Role,
-                DateOfBirth = userviewmodel.DateOfBirth,
-                GamesOwned = userviewmodel.GamesOwned // Store the game titles provided in the request
-            };
-
-            users.Add(user);
-            return Ok(users);
+                return BadRequest("An error occurred while creating the user: " + ex.Message);
+            }
         }
+        //[HttpPut]
+        //public async Task<ActionResult<List<User>>> UpdateUser(User request)
+        //{
+        //    var user = Users.Find(u => u.UserId == request.UserId);
+        //    if (user == null)
+        //        return BadRequest("User not found");
+        //    user.Username = request.Username;
+        //    user.Password = request.Password;
+        //    user.Email = request.Email;
 
-        [HttpPut]
-        public async Task<ActionResult<List<User>>> UpdateUser(User request)
-        {
-            var user = users.Find(u => u.UserId == request.UserId);
-            if (user == null)
-                return BadRequest("User not found");
-            user.Username = request.Username;
-            user.Password = request.Password;
-            user.Email = request.Email;
+        //    return Ok(Users);
+        //}
 
-            return Ok(users);
-        }
+        //[HttpDelete]
+        //public async Task<ActionResult<List<User>>> DeleteUser(User request)
+        //{
+        //    var user = Users.Find(u => u.UserId == request.UserId);
+        //    if (user == null)
+        //        return BadRequest("User not found");
 
-        [HttpDelete]
-        public async Task<ActionResult<List<User>>> DeleteUser(User request)
-        {
-            var user = users.Find(u => u.UserId == request.UserId);
-            if (user == null)
-                return BadRequest("User not found");
-
-            users.Remove(user);
-            return Ok(user);
-        }
-        public class UserViewModel
-        {
-            public string Username { get; set; } = string.Empty;
-            public string Password { get; set; } = string.Empty;
-            public string Email { get; set; } = string.Empty;
-            public string Role { get; set; } = string.Empty;
-            public DateTime DateOfBirth { get; set; }
-            public List<string> GamesOwned { get; set; } = new List<string>();
-        }
+        //    Users.Remove(user);
+        //    return Ok(user);
+        //}
     }
 }
 
