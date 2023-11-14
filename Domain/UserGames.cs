@@ -1,4 +1,4 @@
-﻿namespace InternetGameShopAPI.Domain
+﻿﻿namespace InternetGameShopAPI.Domain
 {
     public class UserGames
     {
@@ -11,10 +11,11 @@
             Title = title;
         }
 
-        public Guid User_id { get; }
+        public Guid User_id { get; set;  }
         public Guid Game_id { get; set; }
-        public string Title { get; set; }
-        public User User { get; }
+        public string Title { get; set; } 
+        public User User { get; } 
+        public Game Game { get; }
 
     }
 }

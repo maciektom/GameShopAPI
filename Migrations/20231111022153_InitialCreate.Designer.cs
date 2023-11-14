@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InternetGameShopAPI.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20231109221644_InitialCreate")]
+    [Migration("20231111022153_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -63,12 +63,7 @@ namespace InternetGameShopAPI.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("GameId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Games", (string)null);
                 });
@@ -115,11 +110,36 @@ namespace InternetGameShopAPI.Migrations
                     b.ToTable("Users", (string)null);
                 });
 
-            modelBuilder.Entity("InternetGameShopAPI.Domain.Game", b =>
+            modelBuilder.Entity("InternetGameShopAPI.Domain.UserGames", b =>
+                {
+                    b.Property<Guid>("Game_id")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(255)
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("Game_ID");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Title");
+
+                    b.Property<Guid>("User_id")
+                        .HasMaxLength(255)
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("User_ID");
+
+                    b.HasKey("Game_id");
+
+                    b.HasIndex("User_id");
+
+                    b.ToTable("UserGames", (string)null);
+                });
+
+            modelBuilder.Entity("InternetGameShopAPI.Domain.UserGames", b =>
                 {
                     b.HasOne("InternetGameShopAPI.Domain.User", "User")
                         .WithMany("GamesOwned")
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("User_id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

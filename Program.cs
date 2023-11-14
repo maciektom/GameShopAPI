@@ -7,6 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IGameService, GameService>();
+builder.Services.AddScoped<IUserGamesService, UserGamesService>();
 builder.Services.AddLogging(
     option =>
     {

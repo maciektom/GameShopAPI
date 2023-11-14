@@ -5,12 +5,13 @@
     {
 
 
-        public Guid GenreID { get; set; }
+        public Guid GenreId { get; set; }
         public string Name { get; set; }
-
+        public ICollection<GenreGames> GenreGames { get; set; } = new List<GenreGames>();
+        public Genre() { }
         public Genre(Guid genreID, string name)
         {
-            GenreID = genreID;
+            GenreId = genreID;
             Name = name;
         }
     }

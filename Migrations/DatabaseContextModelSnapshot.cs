@@ -65,6 +65,48 @@ namespace InternetGameShopAPI.Migrations
                     b.ToTable("Games", (string)null);
                 });
 
+            modelBuilder.Entity("InternetGameShopAPI.Domain.Genre", b =>
+                {
+                    b.Property<Guid>("GenreId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("Genre_ID");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.HasKey("GenreId");
+
+                    b.ToTable("Genre", (string)null);
+                });
+
+            modelBuilder.Entity("InternetGameShopAPI.Domain.GenreGames", b =>
+                {
+                    b.Property<Guid>("Game_id")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(255)
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("Game_ID");
+
+                    b.Property<Guid>("Genre_id")
+                        .HasMaxLength(255)
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("Genre_ID");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Title");
+
+                    b.HasKey("Game_id");
+
+                    b.HasIndex("Genre_id");
+
+                    b.ToTable("GenreGames", (string)null);
+                });
+
             modelBuilder.Entity("InternetGameShopAPI.Domain.User", b =>
                 {
                     b.Property<Guid>("UserId")
@@ -132,6 +174,17 @@ namespace InternetGameShopAPI.Migrations
                     b.ToTable("UserGames", (string)null);
                 });
 
+            modelBuilder.Entity("InternetGameShopAPI.Domain.GenreGames", b =>
+                {
+                    b.HasOne("InternetGameShopAPI.Domain.Genre", "Genre")
+                        .WithMany("GenreGames")
+                        .HasForeignKey("Genre_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Genre");
+                });
+
             modelBuilder.Entity("InternetGameShopAPI.Domain.UserGames", b =>
                 {
                     b.HasOne("InternetGameShopAPI.Domain.User", "User")
@@ -141,6 +194,11 @@ namespace InternetGameShopAPI.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("InternetGameShopAPI.Domain.Genre", b =>
+                {
+                    b.Navigation("GenreGames");
                 });
 
             modelBuilder.Entity("InternetGameShopAPI.Domain.User", b =>
