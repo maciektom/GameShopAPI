@@ -1,7 +1,9 @@
 ﻿using InternetGameShopAPI.Domain;
+using InternetGameShopAPI.DTO;
+using InternetGameShopAPI.Repositories;
 using InternetGameShopAPI.Services;
 using Microsoft.AspNetCore.Mvc;
-using static InternetGameShopAPI.Services.UserService;
+using static InternetGameShopAPI.Repositories.UserRepository;
 
 namespace InternetGameShopAPI.Controllers
 {
@@ -10,22 +12,23 @@ namespace InternetGameShopAPI.Controllers
     public class UserController : Controller
     {
 
-        private readonly IUserService _userService;
-        public UserController(IUserService userService)
+        private readonly IUserRepository _userRepository;
+        public UserController(IUserRepository userService)
         {
-            _userService = userService;
+            _userRepository = userService;
         }
 
-
+        
         [HttpPost]
-        public async Task<ActionResult<User>> AddUser([FromBody] UserViewModel userviewmodel)
+        public async Task<ActionResult<User>> AddUser([FromBody] CreateUserDTO user)
         {
             try
             {
+
                 if (ModelState.IsValid)
                 {
-                    await _userService.AddUser(userviewmodel);
-                    return Ok(userviewmodel);
+                    await _userRepository.AddUser(user);
+                    return Ok(user);
                 }
                 return BadRequest("Invalid input data. User not created.");
             }
@@ -40,14 +43,14 @@ namespace InternetGameShopAPI.Controllers
         {
             try
             {
-                var user = await _userService.GetUserById(userId);
+                var user = await _userRepository.GetUserById(userId);
 
                 if (user == null)
                 {
                     return NotFound();
                 }
 
-                await _userService.DeleteUser(userId);
+                await _userRepository.DeleteUser(userId);
                 return Ok("User deleted.");
             }
 
@@ -62,7 +65,7 @@ namespace InternetGameShopAPI.Controllers
         {
             try
             {
-                var users = await _userService.GetAllUsers();
+                var users = await _userRepository.GetAllUsers();
                 return Ok(users);
             }
             catch (Exception ex)
@@ -71,25 +74,12 @@ namespace InternetGameShopAPI.Controllers
             }
         }
         [HttpPut("changeUserData/{userId}")]
-        public async Task<ActionResult<User>> ChangeUserData(Guid userId, [FromBody] UserUpdateModel updatedUserData)
+        public async Task<ActionResult<User>> UpdateUser(Guid userId, [FromBody]UpdateUserDTO updatedUserData)
         {
-            try
-            {
-                var succes = await _userService.ChangeUserData(userId, updatedUserData);
-                if (succes)
-                {
-                    return Ok("User data updated succesfylly");
-                }
-                else
-                {
-                    return NotFound("User not found.");
-                }
-            }
-            catch (Exception ex)
-            {
-                return BadRequest("An error occurred while creating the user: " + ex.Message);
-            }
+                var success = await _userRepository.ChangeUserData(userId, updatedUserData);
+                 return Ok(success);
         }
+
 
 
 

@@ -10,11 +10,15 @@
         public string Publisher { get; set; } = string.Empty;
         public string Platform { get; set; } = string.Empty;
         public DateTime ReleaseDate { get; set; }
-        public float Price { get; set; } 
+        public float Price { get; set; }
         public string Genre { get; set; } = string.Empty;
-
-        // public Game(Guid gameId, string title, string description, string developer, string publisher, string platform, DateTime releaseDate, float price, string genre)
         public Guid UserId { get; }
         public User User { get; }
+        //public enum Platform
+        //{
+        //xbox360,
+        //ps5,
+        //pc
+        //}
     }
 }

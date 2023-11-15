@@ -1,14 +1,18 @@
 using InternetGameShopAPI.Infrastructure;
+using InternetGameShopAPI.Repositories;
 using InternetGameShopAPI.Services;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddScoped<IUserService, UserService>();
+// Add services to the container
 builder.Services.AddScoped<IGameService, GameService>();
 builder.Services.AddScoped<IUserGamesService, UserGamesService>();
+builder.Services.AddScoped<IGameRepository, GameRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserGamesUoW, UserGamesUoW>();
+builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 builder.Services.AddLogging(
     option =>
     {

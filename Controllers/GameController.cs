@@ -6,8 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualBasic;
 using static InternetGameShopAPI.Controllers.UserController;
 using static InternetGameShopAPI.Services.GameService;
-using static InternetGameShopAPI.Services.UserService;
-
 namespace InternetGameShopAPI.Controllers
 {
     [ApiController]
