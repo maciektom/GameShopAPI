@@ -1,4 +1,4 @@
-﻿using InternetGameShopAPI.Domain;
+﻿using InternetGameShopAPI.Domain.GameAggregate;
 using InternetGameShopAPI.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,11 +20,10 @@ namespace InternetGameShopAPI.Services
                 Title = gameViewModel.Title,
                 Description = gameViewModel.Description,
                 Developer = gameViewModel.Developer,
-                Publisher = gameViewModel.Publisher,
                 Platform = gameViewModel.Platform,
                 ReleaseDate = gameViewModel.ReleaseDate,
                 Price = gameViewModel.Price,
-                Genre = gameViewModel.Genre,
+                //Genre = gameViewModel.Genre,
             };
             _databaseContext.Games.Add(game);
             await _databaseContext.SaveChangesAsync();

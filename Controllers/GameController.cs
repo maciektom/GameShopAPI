@@ -1,10 +1,11 @@
-﻿using InternetGameShopAPI.Domain;
+﻿using InternetGameShopAPI.Domain.GameAggregate;
+using InternetGameShopAPI.Domain.UserAggregate;
 using InternetGameShopAPI.Infrastructure;
 using InternetGameShopAPI.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualBasic;
-using static InternetGameShopAPI.Controllers.UserController;
+
 using static InternetGameShopAPI.Services.GameService;
 namespace InternetGameShopAPI.Controllers
 {

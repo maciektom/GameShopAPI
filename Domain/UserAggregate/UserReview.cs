@@ -1,15 +1,15 @@
-﻿namespace InternetGameShopAPI.Domain
+﻿namespace InternetGameShopAPI.Domain.UserAggregate
 {
-    public class Review
+    public class UserReview
     {
-        public int ReviewID { get; set; }
-        public int GameID { get; set; }
-        public int UserID { get; set; }
+        public Guid ReviewID { get; set; }
+        public Guid GameID { get; set; }
+        public Guid UserID { get; set; }
         public int Rating { get; set; }
         public string Comment { get; set; }
         public DateTime DatePosted { get; set; }
 
-        public Review(int reviewID, int gameID, int userID, int rating, string comment, DateTime datePosted)
+        public UserReview(Guid reviewID, Guid gameID, Guid userID, int rating, string comment, DateTime datePosted)
         {
             ReviewID = reviewID;
             GameID = gameID;

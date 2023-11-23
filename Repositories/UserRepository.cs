@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Azure.Identity;
-using InternetGameShopAPI.Domain;
+using InternetGameShopAPI.Domain.UserAggregate;
 using InternetGameShopAPI.DTO;
 using InternetGameShopAPI.Infrastructure;
 using Microsoft.EntityFrameworkCore;
@@ -19,20 +19,11 @@ namespace InternetGameShopAPI.Repositories
             _databaseContext = databaseContext;
         }
 
-        public async Task<User> AddUser(CreateUserDTO user)
+        public async Task<User> AddUser(User user)
         {
-            var newUser = new User
-            {
-                UserId = Guid.NewGuid(),
-                Username = user.Username,
-                Password = user.Password,
-                Email = user.Email,
-                Role = user.Role,
-                DateOfBirth = user.DateOfBirth
-            };
-            _databaseContext.Users.Add(newUser);
+            _databaseContext.Users.Add(user);
             await _databaseContext.SaveChangesAsync();
-            return newUser;
+            return user;
         }
 
         public async Task<Guid?> DeleteUser(Guid userId)
@@ -58,14 +49,16 @@ namespace InternetGameShopAPI.Repositories
             return await _databaseContext.Users.ToListAsync();
         }
 
-        public async Task<User> ChangeUserData(Guid userId, UpdateUserDTO entityToUpdate)
+        public async Task<User> UpdateUser(Guid userId, UpdateUserDTO entityToUpdate)
         {
             var user = await _databaseContext.Users.FindAsync(userId);
-            user.Password = entityToUpdate.Password;
-            user.Email = entityToUpdate.Email;
-            user.Username = entityToUpdate.Username;
             await _databaseContext.SaveChangesAsync();
             return user;
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
         }
     }
 }

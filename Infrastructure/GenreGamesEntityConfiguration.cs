@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
-using InternetGameShopAPI.Domain;
+using InternetGameShopAPI.Domain.GameAggregate;
 
 namespace InternetGameShopAPI.Infrastructure
 {

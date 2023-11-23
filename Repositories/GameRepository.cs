@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using InternetGameShopAPI.Domain;
+using InternetGameShopAPI.Domain.GameAggregate;
 using InternetGameShopAPI.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
@@ -58,7 +58,6 @@ namespace InternetGameShopAPI.Repositories
             game.Title = updatedGameData.Title;
             game.Description = updatedGameData.Description;
             game.Developer = updatedGameData.Developer;
-            game.Publisher = updatedGameData.Publisher;
             game.Platform = updatedGameData.Platform;
             game.ReleaseDate = updatedGameData.ReleaseDate;
             game.Price = updatedGameData.Price;

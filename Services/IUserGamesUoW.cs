@@ -1,9 +1,9 @@
-﻿using InternetGameShopAPI.Domain;
+﻿using InternetGameShopAPI.Domain.UserAggregate;
 
 namespace InternetGameShopAPI.Services
 {
     public interface IUserGamesUoW
     {
-        Task<UserGames> DoWork(UserGames userGames);
+        Task<UserGame> DoWork(UserGame userGames);
     }
 }

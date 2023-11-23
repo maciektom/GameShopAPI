@@ -1,4 +1,4 @@
-﻿using InternetGameShopAPI.Domain;
+﻿using InternetGameShopAPI.Domain.GameAggregate;
 
 namespace InternetGameShopAPI.Repositories
 {

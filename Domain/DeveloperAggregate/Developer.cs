@@ -1,4 +1,4 @@
-﻿namespace InternetGameShopAPI.Domain
+﻿namespace InternetGameShopAPI.Domain.DeveloperAggregate
 {
 
     public class Developer

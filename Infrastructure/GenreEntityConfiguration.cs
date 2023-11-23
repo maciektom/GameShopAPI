@@ -1,4 +1,4 @@
-﻿using InternetGameShopAPI.Domain;
+﻿using InternetGameShopAPI.Domain.GameAggregate;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -13,6 +13,7 @@ namespace InternetGameShopAPI.Infrastructure
             builder.Property(g => g.GenreId)
                 .HasColumnName("Genre_ID")
                 .IsRequired();
+
 
             builder.Property(g => g.Name)
                 .IsRequired()

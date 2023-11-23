@@ -4,6 +4,7 @@ using InternetGameShopAPI.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InternetGameShopAPI.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20231117003425_usergamestest")]
+    partial class usergamestest
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,7 +25,7 @@ namespace InternetGameShopAPI.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("InternetGameShopAPI.Domain.GameAggregate.Game", b =>
+            modelBuilder.Entity("InternetGameShopAPI.Domain.Game", b =>
                 {
                     b.Property<Guid>("GameId")
                         .ValueGeneratedOnAdd()
@@ -41,15 +44,16 @@ namespace InternetGameShopAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Pegi")
-                        .HasColumnType("int");
-
                     b.Property<string>("Platform")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<float>("Price")
                         .HasColumnType("real");
+
+                    b.Property<string>("Publisher")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ReleaseDate")
                         .HasColumnType("datetime2");
@@ -64,7 +68,7 @@ namespace InternetGameShopAPI.Migrations
                     b.ToTable("Games", (string)null);
                 });
 
-            modelBuilder.Entity("InternetGameShopAPI.Domain.GameAggregate.Genre", b =>
+            modelBuilder.Entity("InternetGameShopAPI.Domain.Genre", b =>
                 {
                     b.Property<Guid>("GenreId")
                         .ValueGeneratedOnAdd()
@@ -81,7 +85,7 @@ namespace InternetGameShopAPI.Migrations
                     b.ToTable("Genre", (string)null);
                 });
 
-            modelBuilder.Entity("InternetGameShopAPI.Domain.GameAggregate.GenreGames", b =>
+            modelBuilder.Entity("InternetGameShopAPI.Domain.GenreGames", b =>
                 {
                     b.Property<Guid>("Game_id")
                         .ValueGeneratedOnAdd()
@@ -111,7 +115,7 @@ namespace InternetGameShopAPI.Migrations
                     b.ToTable("GenreGames", (string)null);
                 });
 
-            modelBuilder.Entity("InternetGameShopAPI.Domain.UserAggregate.User", b =>
+            modelBuilder.Entity("InternetGameShopAPI.Domain.User", b =>
                 {
                     b.Property<Guid>("UserId")
                         .ValueGeneratedOnAdd()
@@ -153,7 +157,7 @@ namespace InternetGameShopAPI.Migrations
                     b.ToTable("Users", (string)null);
                 });
 
-            modelBuilder.Entity("InternetGameShopAPI.Domain.UserAggregate.UserGame", b =>
+            modelBuilder.Entity("InternetGameShopAPI.Domain.UserGames", b =>
                 {
                     b.Property<Guid>("User_id")
                         .HasMaxLength(255)
@@ -175,9 +179,9 @@ namespace InternetGameShopAPI.Migrations
                     b.ToTable("UserGames", (string)null);
                 });
 
-            modelBuilder.Entity("InternetGameShopAPI.Domain.GameAggregate.GenreGames", b =>
+            modelBuilder.Entity("InternetGameShopAPI.Domain.GenreGames", b =>
                 {
-                    b.HasOne("InternetGameShopAPI.Domain.GameAggregate.Genre", "Genre")
+                    b.HasOne("InternetGameShopAPI.Domain.Genre", "Genre")
                         .WithMany("GenreGames")
                         .HasForeignKey("Genre_id")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -186,10 +190,10 @@ namespace InternetGameShopAPI.Migrations
                     b.Navigation("Genre");
                 });
 
-            modelBuilder.Entity("InternetGameShopAPI.Domain.UserAggregate.UserGame", b =>
+            modelBuilder.Entity("InternetGameShopAPI.Domain.UserGames", b =>
                 {
-                    b.HasOne("InternetGameShopAPI.Domain.UserAggregate.User", "User")
-                        .WithMany("UserGames")
+                    b.HasOne("InternetGameShopAPI.Domain.User", "User")
+                        .WithMany("GamesOwned")
                         .HasForeignKey("User_id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -197,14 +201,14 @@ namespace InternetGameShopAPI.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("InternetGameShopAPI.Domain.GameAggregate.Genre", b =>
+            modelBuilder.Entity("InternetGameShopAPI.Domain.Genre", b =>
                 {
                     b.Navigation("GenreGames");
                 });
 
-            modelBuilder.Entity("InternetGameShopAPI.Domain.UserAggregate.User", b =>
+            modelBuilder.Entity("InternetGameShopAPI.Domain.User", b =>
                 {
-                    b.Navigation("UserGames");
+                    b.Navigation("GamesOwned");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,20 +1,20 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
-using InternetGameShopAPI.Domain;
+using InternetGameShopAPI.Domain.UserAggregate;
 
 namespace InternetGameShopAPI.Infrastructure
 {
-    public class UserGamesEntityConfiguration : IEntityTypeConfiguration<UserGames>
+    public class UserGamesEntityConfiguration : IEntityTypeConfiguration<UserGame>
     {
-        public void Configure(EntityTypeBuilder<UserGames> builder)
+        public void Configure(EntityTypeBuilder<UserGame> builder)
         {
-            builder.Ignore(a => a.User);
+            //builder.Ignore(a => a.User);
 
             builder.ToTable("UserGames");
-            builder.HasKey(c => c.Game_id);
+            builder.HasKey(c => new { c.User_id, c.Game_id });
 
             builder.HasOne(a => a.User)
-               .WithMany(a => a.GamesOwned)
+               .WithMany(a => a.UserGames)
                .HasForeignKey(a => a.User_id);
 
             builder.Property(a => a.User_id)

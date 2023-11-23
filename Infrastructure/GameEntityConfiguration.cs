@@ -1,4 +1,4 @@
-﻿using InternetGameShopAPI.Domain;
+﻿using InternetGameShopAPI.Domain.GameAggregate;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -24,8 +24,6 @@ namespace InternetGameShopAPI.Infrastructure
             builder.Property(g => g.Developer)
                 .IsRequired();
 
-            builder.Property(g => g.Publisher)
-                .IsRequired();
 
             builder.Property(g => g.Platform)
                 .IsRequired();
@@ -35,9 +33,13 @@ namespace InternetGameShopAPI.Infrastructure
 
             builder.Property(g => g.Price)
                 .IsRequired();
-
+           
             builder.Property(g => g.Genre)
-                .IsRequired();
+               .IsRequired()
+               .HasConversion(
+                   genre => genre.Name,            // Convert Genre to string for database
+                   name => new Genre(Guid.NewGuid(), name)  // Convert string from database to Genre
+               );
         }
     }
 }

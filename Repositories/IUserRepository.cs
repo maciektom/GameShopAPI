@@ -1,13 +1,14 @@
-﻿using InternetGameShopAPI.Domain;
+﻿using InternetGameShopAPI.Domain.UserAggregate;
 using InternetGameShopAPI.DTO;
 
 namespace InternetGameShopAPI.Repositories
 {
     public interface IUserRepository
     {
-        Task<User> AddUser(CreateUserDTO user);
-        Task<User> ChangeUserData(Guid userId,UpdateUserDTO entityToUpdate);
+        Task<User> AddUser(User user);
+        Task<User> UpdateUser(Guid userId,UpdateUserDTO entityToUpdate);
         Task<Guid?> DeleteUser(Guid userId);
+        void Dispose();
         Task<List<User>> GetAllUsers();
         Task<User> GetUserById(Guid userId);
     }

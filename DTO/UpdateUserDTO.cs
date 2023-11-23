@@ -5,9 +5,8 @@ namespace InternetGameShopAPI.DTO
 {
     public class UpdateUserDTO
     {
-        public Guid UserId { get;  }
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public string Email { get; set; }
+        public string UpdatedUsername { get; set; }
+        public string UpdatedPassword { get; set; }
+        public string UpdatedEmail { get; set; }
     }
 }

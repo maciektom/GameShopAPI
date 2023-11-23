@@ -1,9 +1,9 @@
-﻿using InternetGameShopAPI.Domain;
+﻿using InternetGameShopAPI.Domain.UserAggregate;
 
 namespace InternetGameShopAPI.Services
 {
     public interface IUserGamesService
     {
-        Task<UserGames> AddGameToUser(Guid userId, Guid gameId);
+        Task<UserGame> AddGameToUser(Guid userId, Guid gameId);
     }
 }

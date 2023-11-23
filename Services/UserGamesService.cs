@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using InternetGameShopAPI.Domain;
+using InternetGameShopAPI.Domain.UserAggregate;
 using InternetGameShopAPI.Infrastructure;
 using InternetGameShopAPI.Repositories;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -20,24 +20,33 @@ namespace InternetGameShopAPI.Services
             _gameRepository = gameRepository;
             _mapper = mapper;
         }
-        public async Task<UserGames> AddGameToUser(Guid userId, Guid gameId)
+        public async Task<UserGame> AddGameToUser(Guid userId, Guid gameId)
         {
             var user = await _userRepository.GetUserById(userId);
             if (user == null)
             {
                 throw new NotImplementedException("User not found.");
             }
-
+            
             var game = await _gameRepository.GetGameById(gameId);
             if (game == null)
             {
                 throw new NotImplementedException("Game not found.");
             }
-
-            var userGame = _mapper.Map<UserGames>(game);
+            var userGame = _mapper.Map<UserGame>(game);
             userGame.User_id = userId;
-            user.GamesOwned.Add(userGame);
+            userGame.Game_id = gameId;
+
+            //var games = user.GamesOwned.Count();
+            //    if (games >= 1)
+            //    {
+            //    throw new Exception("User already owns this game."); 
+            //    };
+
+            user.UserGames.Add(userGame);
+
             await _userGamesUoW.DoWork(userGame);
+            
             return userGame;
         }
     }

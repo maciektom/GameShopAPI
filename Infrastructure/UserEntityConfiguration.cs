@@ -1,4 +1,4 @@
-﻿using InternetGameShopAPI.Domain;
+﻿using InternetGameShopAPI.Domain.UserAggregate;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -40,7 +40,7 @@ namespace InternetGameShopAPI.Infrastructure
                 .IsRequired()
                 .HasMaxLength(255);
 
-            builder.HasMany(u => u.GamesOwned)
+            builder.HasMany(u => u.UserGames)
                 .WithOne(u => u.User)
                 .HasForeignKey(u => u.User_id);
         }
