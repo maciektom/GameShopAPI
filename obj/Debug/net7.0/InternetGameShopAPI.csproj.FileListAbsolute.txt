@@ -157,3 +157,6 @@ C:\Users\Bandyta\source\repos\InternetGameShopAPI\InternetGameShopAPI\bin\Debug\
 C:\Users\Bandyta\source\repos\InternetGameShopAPI\InternetGameShopAPI\bin\Debug\net7.0\MediatR.dll
 C:\Users\Bandyta\source\repos\InternetGameShopAPI\InternetGameShopAPI\bin\Debug\net7.0\MediatR.Contracts.dll
 C:\Users\Bandyta\source\repos\InternetGameShopAPI\InternetGameShopAPI\bin\Debug\net7.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\48533\source\repos\GameshopAPI\GameShopAPI\bin\Debug\net7.0\MediatR.dll
+C:\Users\48533\source\repos\GameshopAPI\GameShopAPI\bin\Debug\net7.0\MediatR.Contracts.dll
+C:\Users\48533\source\repos\GameshopAPI\GameShopAPI\bin\Debug\net7.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll

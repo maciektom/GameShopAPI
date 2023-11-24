@@ -18,7 +18,7 @@
 //            _userRepository = userService;
 //        }
 
-        
+
 //        [HttpPost]
 //        public async Task<ActionResult<User>> AddUser([FromBody] CreateUserDTO user)
 //        {
@@ -92,18 +92,18 @@
 
 
 
-//        //[HttpPut]
-//        //public async Task<ActionResult<List<User>>> UpdateUser(User request)
-//        //{
-//        //    var user = Users.Find(u => u.UserId == request.UserId);
-//        //    if (user == null)
-//        //        return BadRequest("User not found");
-//        //    user.Username = request.Username;
-//        //    user.Password = request.Password;
-//        //    user.Email = request.Email;
+//[HttpPut]
+//public async Task<ActionResult<List<User>>> UpdateUser(User request)
+//{
+//    var user = Users.Find(u => u.UserId == request.UserId);
+//    if (user == null)
+//        return BadRequest("User not found");
+//    user.Username = request.Username;
+//    user.Password = request.Password;
+//    user.Email = request.Email;
 
-//        //    return Ok(Users);
-//        //}
+//    return Ok(Users);
+//}
 
 //        //[HttpDelete]
 //        //public async Task<ActionResult<List<User>>> DeleteUser(User request)

@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Bandyta\\source\\repos\\InternetGameShopAPI\\InternetGameShopAPI\\InternetGameShopAPI.csproj": {}
+    "C:\\Users\\48533\\source\\repos\\GameshopAPI\\GameShopAPI\\InternetGameShopAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Bandyta\\source\\repos\\InternetGameShopAPI\\InternetGameShopAPI\\InternetGameShopAPI.csproj": {
+    "C:\\Users\\48533\\source\\repos\\GameshopAPI\\GameShopAPI\\InternetGameShopAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Bandyta\\source\\repos\\InternetGameShopAPI\\InternetGameShopAPI\\InternetGameShopAPI.csproj",
+        "projectUniqueName": "C:\\Users\\48533\\source\\repos\\GameshopAPI\\GameShopAPI\\InternetGameShopAPI.csproj",
         "projectName": "InternetGameShopAPI",
-        "projectPath": "C:\\Users\\Bandyta\\source\\repos\\InternetGameShopAPI\\InternetGameShopAPI\\InternetGameShopAPI.csproj",
-        "packagesPath": "C:\\Users\\Bandyta\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Bandyta\\source\\repos\\InternetGameShopAPI\\InternetGameShopAPI\\obj\\",
+        "projectPath": "C:\\Users\\48533\\source\\repos\\GameshopAPI\\GameShopAPI\\InternetGameShopAPI.csproj",
+        "packagesPath": "C:\\Users\\48533\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\48533\\source\\repos\\GameshopAPI\\GameShopAPI\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Bandyta\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\48533\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -110,7 +106,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

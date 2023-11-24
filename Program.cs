@@ -1,9 +1,11 @@
 using InternetGameShopAPI.Infrastructure;
 using InternetGameShopAPI.Repositories;
 using InternetGameShopAPI.Services;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using System.Text.Json;
+using static InternetGameShopAPI.Controllers._Users.UpdateUserController;
 
 var builder = WebApplication.CreateBuilder(args);
 

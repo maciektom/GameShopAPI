@@ -4,10 +4,7 @@ using InternetGameShopAPI.Services;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Project_API.Common;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-using static InternetGameShopAPI.Controllers._Users.DeleteUserController;
+
 
 namespace InternetGameShopAPI.Controllers._Users
 {
@@ -56,8 +53,8 @@ namespace InternetGameShopAPI.Controllers._Users
                     var user = await _userRepository.GetUserById(request.UserId);
                     if (user != null)
                     {
-                        _userRepository.DeleteUser(user.UserId);
-                        _unitOfWork.SaveChangesAsync();
+                        await _userRepository.DeleteUser(user.UserId);
+                        await _unitOfWork.SaveChangesAsync();
 
                         return new DeleteUserResult
                         {

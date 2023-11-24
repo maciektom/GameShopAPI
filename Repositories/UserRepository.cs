@@ -49,7 +49,7 @@ namespace InternetGameShopAPI.Repositories
             return await _databaseContext.Users.ToListAsync();
         }
 
-        public async Task<User> UpdateUser(Guid userId, UpdateUserDTO entityToUpdate)
+        public async Task<User> UpdateUser(Guid userId)
         {
             var user = await _databaseContext.Users.FindAsync(userId);
             await _databaseContext.SaveChangesAsync();
